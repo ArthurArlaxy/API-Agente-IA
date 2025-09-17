@@ -1,0 +1,33 @@
+{
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.3.2",
+    "@types/pdf-parse": "^1.1.5",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "@langchain/community": "^0.3.56",
+    "@langchain/core": "^0.3.76",
+    "@langchain/google-genai": "^0.2.18",
+    "@langchain/langgraph": "^1.0.0-alpha.1",
+    "dotenv": "^16.4.5",
+    "faiss-node": "^0.5.1",
+    "langchain": "^0.3.34",
+    "pdf-parse": "^1.1.1",
+    "zod": "^3.25.76"
+  },
+  "name": "agente-de-ia",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "tsx watch ./src/agentIA.ts",
+    "start": "node ./dist/agentIA.js",
+    "build": "tsc "
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
