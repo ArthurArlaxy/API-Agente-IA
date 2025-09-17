@@ -33,6 +33,7 @@ O projeto utiliza a API Gemini da Google para a lógica do agente. Você precisa
 
 A inteligência do agente é definida por um **grafo de estados**, que mapeia o fluxo de decisão de cada interação do usuário. A imagem abaixo ilustra a arquitetura do fluxo de trabalho:
 
+<img src="https://iili.io/KRMFXh7.md.png" alt="funcionamento-do-grafo" border="0">
 
 ### Explicação do Grafo
 
@@ -54,3 +55,7 @@ O **Zod** é uma ferramenta crucial neste projeto para garantir a segurança e a
 
 -   **O que é?** Zod é uma biblioteca de declaração e validação de esquemas. Ela garante que um objeto de dados (como o JSON da IA) corresponda a uma estrutura e tipos pré-definidos (`decisao`, `urgencia`, etc.).
 -   **Por que usamos?** O Zod previne que respostas inválidas ou mal-formatadas do LLM causem erros na aplicação, tornando o fluxo do grafo mais robusto e previsível. Além disso, ele nos permite derivar tipos TypeScript diretamente do esquema, proporcionando uma segurança de código ainda maior.
+
+### **REFERÊNCIA**
+
+Esse projeto foi totalmente inspirado e espelhado na Imersão Dev Agente de IA da Alura com o Google Gemini!
