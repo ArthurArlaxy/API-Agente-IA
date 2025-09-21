@@ -346,8 +346,8 @@ async function construirGrafo() {
 // Cria uma instância do grafo fora da função principal.
 const app = construirGrafo()
 
-// Função principal que executa o fluxo para cada pergunta de teste.
-async function main() {
+// Função de log para teste do Agente que executa o fluxo para cada pergunta de teste.
+async function logAgentIA() {
     for (const question of perguntasDeTeste) {
         // Invoca o grafo com a pergunta inicial.
         const respotaFinal = (await app).invoke({ "pergunta": question })
@@ -369,5 +369,30 @@ async function main() {
     }
 }
 
+
+// função principal
+export async function agentIA(pergurta:string) {
+
+        // Invoca o grafo com a pergunta inicial.
+        const respotaFinal = (await app).invoke({ "pergunta": pergurta })
+
+        // Acessa o estado final do grafo.
+        const answerTriagem = (await respotaFinal).triagem
+
+        // Imprime o resultado formatado.
+        console.log(`PERGUNTA: ${pergurta}\n`)
+        console.log(`DECISÃO: ${answerTriagem.decisao} | URGENCIA ${answerTriagem.urgencia} | AÇÃO FINAL: ${(await respotaFinal).acaoFinal}\n`)
+        console.log(`RESPOSTA: ${(await respotaFinal).resposta}\n`)
+        if ((await respotaFinal).citacoes.length > 0) {
+            console.log("CITAÇÕES:")
+            for (const citacao of (await respotaFinal).citacoes) {
+                console.log(citacao)
+            }
+        console.log("--------------------------------------------")
+    }
+
+    return (await respotaFinal).resposta
+}
+
 // Inicia a execução do programa.
-main()
+agentIA("Qual é o procedimento para pedir o aumento do vale refeição?")
