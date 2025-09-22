@@ -1,6 +1,9 @@
 import bcrypt from 'bcrypt'
+import "dotenv/config";
 
-interface userInterface {
+const rounds = Number(process.env.BCRYPT_ROUNDS)
+
+export interface userInterface {
     id: number
     username: string,
     email: string,
@@ -31,9 +34,9 @@ export class User{
         return this.users.find(user => user.email === email) ?? null;
     }
 
-    static create(attributes: Omit<userInterface, "id">){
-        const {username, email, password} = attributes
-        const encryptedPassword = bcrypt.hashSync(password, Number(process.env.BCRYPT_ROUNDS))
+    static create(attributes: Partial<userInterface>): User{
+        const { username, email, password } = attributes;
+        const encryptedPassword = bcrypt.hashSync(password, rounds)
         const newUser = new User({
             id:this.sequence++,
             username,
