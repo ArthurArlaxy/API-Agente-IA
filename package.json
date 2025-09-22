@@ -25,7 +25,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "tsx watch server.tsx",
+    "test": "tsx watch src/server.ts",
     "start": "node ./dist/server.js",
     "build": "tsc "
   },
