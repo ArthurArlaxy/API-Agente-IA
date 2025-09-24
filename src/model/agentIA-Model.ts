@@ -165,7 +165,7 @@ async function createVectorStore(chunks: Document[]): Promise<FaissStore> {
 
 // Função para criar o retriever, que busca os documentos mais relevantes.
 async function createRetriever() {
-    const documents = await loadPDFDocuments(path.resolve("./media"))
+    const documents = await loadPDFDocuments(path.resolve("./src/media"))
     const splitedDocument = await splitDocument(documents)
     const vectorStore = await createVectorStore(splitedDocument)
     const retriever = vectorStore.asRetriever({
@@ -262,7 +262,7 @@ function nodePedirInfo(state: AgentState): Partial<AgentState> {
         detalhe = "Tema e contexto específico"
     }
     return {
-        "resposta": `Para avançar preciso que detalhe: ${detalhe}`,
+        "resposta": `Para avançar preciso que detalhe: ${detalhe}. Para que eu possa responder melhor, por favor, refaça a pergunta`,
         "citacoes": [],
         "acaoFinal": "PEDIR_INFO"
     }
@@ -393,6 +393,3 @@ export async function agentIA(pergurta:string) {
 
     return (await respotaFinal).resposta
 }
-
-// Inicia a execução do programa.
-agentIA("Qual é o procedimento para pedir o aumento do vale refeição?")
