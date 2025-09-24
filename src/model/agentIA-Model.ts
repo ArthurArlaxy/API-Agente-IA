@@ -371,7 +371,7 @@ async function logAgentIA() {
 
 
 // função principal
-export async function agentIA(pergurta:string) {
+export async function agentIA(pergurta:string):Promise<string> {
 
         // Invoca o grafo com a pergunta inicial.
         const respotaFinal = (await app).invoke({ "pergunta": pergurta })
