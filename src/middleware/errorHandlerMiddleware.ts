@@ -1,13 +1,13 @@
-import { HttpError } from "../error/HttpError";
+import { HttpError } from "../types/HttpError";
 import { z } from "zod"
 import { ErrorRequestHandler } from "express";
 
-export const errorHandler: ErrorRequestHandler = (err, req, res, next) =>{
-    if (err instanceof HttpError){
+export const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
+    if (err instanceof HttpError) {
         res.status(err.status).json({ error: err.message })
-    } else if (err instanceof z.ZodError){
+    } else if (err instanceof z.ZodError) {
         res.status(400).json({ error: err.errors.map(err => err.message) })
-    }else{
-        res.status(500).json({error:"Internal server error"})
+    } else {
+        res.status(500).json({ error: err.message })
     }
 }
