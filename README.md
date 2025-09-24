@@ -1,6 +1,30 @@
-# 🤖 Agente de IA com LangGraph
+# 🌐 API REST - Agente de IA com LangGraph e RAG
 
-Este projeto demonstra a construção de um agente de IA inteligente para triagem e resposta automática, utilizando a biblioteca **LangGraph** em Node.js e TypeScript. O agente é capaz de analisar a intenção de uma pergunta do usuário e direcionar o fluxo para a ação apropriada:
+Este projeto é uma **API REST** construída em **Node.js** e **TypeScript**, com autenticação baseada em **JWT (JSON Web Token)**.  
+A API fornece endpoints para interação com um **agente de IA** que utiliza a biblioteca **LangGraph** e a técnica **RAG (Retrieval-Augmented Generation)** para responder perguntas de forma contextualizada.
+
+---
+
+## 🚀 Funcionalidades
+
+- 📝 **Registro de usuários (Register):** criação de contas com e-mail, usuário e senha.  
+- 🔑 **Login (Login):** autenticação de usuários com retorno de **JWT**.  
+- 🏠 **Home (Home):** endpoint protegido que retorna uma mensagem personalizada de boas-vindas com o nome do usuário.  
+- 💬 **Chat (Chat):** recebe uma mensagem em JSON e responde com base no fluxo do **LangGraph** + **RAG**, utilizando documentos como fonte de contexto.  
+
+> 🔒 Todas as rotas (exceto `register` e `login`) são protegidas por **JWT**.
+
+---
+
+## 📌 Futuro do Projeto
+
+- 🔗 Integração com um **front-end em React** para consumir a API.  
+- 🎨 Interface amigável para o usuário interagir com o agente de IA.  
+- ⚡ Melhorias na experiência de conversa e personalização das respostas.  
+
+---
+
+# 🤖 Agente de IA
 
 -   **Auto-resolução (RAG):** Responde a perguntas com base em documentos internos (PDFs) através de um fluxo de Geração Aumentada por Recuperação (RAG).
 -   **Pedido de Informações:** Solicita mais detalhes ao usuário se a pergunta for ambígua ou incompleta.
@@ -22,12 +46,18 @@ O projeto utiliza a API Gemini da Google para a lógica do agente. Você precisa
 
     > **Importante:** Nunca envie seu arquivo `.env` para o GitHub. Ele já está incluído no `.gitignore` deste projeto para sua segurança.
 
-### Estrutura de Arquivos
+### 📂 Estrutura de Arquivos
 
--   `src/agentIA.ts`: Contém toda a lógica do agente, incluindo a definição do grafo de estados, os nós (triagem, auto-resolver, etc.) e as funções de decisão.
--   `media/`: Diretório onde você deve colocar seus arquivos PDF para serem processados pelo sistema RAG.
--   `.env`: Arquivo de variáveis de ambiente para a chave de API.
--   `package.json`: Lista as dependências do projeto.
+-   `src/controller/`: Contém os controladores principais (`agentController.ts` e `authController.ts`) responsáveis pela lógica das rotas.  
+-   `src/middleware/`: Middlewares globais, como autenticação JWT (`authMiddleware.ts`) e tratamento de erros (`errorHandlerMiddleware.ts`).  
+-   `src/model/`: Modelos da aplicação, incluindo definição de usuários (`user.ts`) e do agente de IA (`agentIA-Model.ts`).  
+-   `src/types/`: Tipos e interfaces TypeScript para tipagem forte (`AuthenticatedRequest.ts`, `HttpError.ts`).  
+-   `src/routes.ts`: Define as rotas principais da API (`register`, `login`, `home`, `chat`).  
+-   `src/server.ts`: Arquivo principal para inicialização do servidor Express.  
+-   `media/`: Diretório onde ficam os documentos PDF utilizados pelo RAG (ex.: políticas internas).  
+-   `.env`: Arquivo de variáveis de ambiente (contém a chave da API Gemini e a chave secreta JWT).  
+-   `package.json`: Lista as dependências e scripts do projeto.  
+-   `tsconfig.json`: Configurações do compilador TypeScript.  eto.
 
 ## 🧠 Lógica e Fluxo do Agente
 
