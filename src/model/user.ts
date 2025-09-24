@@ -34,6 +34,10 @@ export class User{
         return this.users.find(user => user.email === email) ?? null;
     }
 
+    static findByID(id: number): userInterface | null {
+        return this.users.find(user => user.id === id) ?? null;
+    }
+
     static create(attributes: Partial<userInterface>): User{
         const { username, email, password } = attributes;
         const encryptedPassword = bcrypt.hashSync(password, rounds)
